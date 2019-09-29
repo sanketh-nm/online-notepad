@@ -26,7 +26,7 @@ class QRAndURL extends React.Component {
           fgColor="#000000"
           level="Q"
           style={{ width: 256 }}
-          value={window.location.href}
+          value={`${window.location.href.split('?')[0]}?token=${this.props.token}`}
         />
            
            </div>

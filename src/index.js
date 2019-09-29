@@ -29,19 +29,19 @@ class App extends React.Component {
   }
 
   getDataFromDb = async (token) => {
-    const resp = await axios.get(`http://localhost:3001/api/getData/?token=${token}`)
+    const resp = await axios.get(`https://sanket-express.herokuapp.com/api/getData/?token=${token}`)
     let note = '';
     console.log(resp);
-    if (resp.data.success) {
-      note = resp.data.data.length > 0 ? resp.data.data[0].message : 'Old note was blank. Did you forget to submit?';
+    if (resp.data.success && resp.data.data.length) {
+      note = resp.data.data[0].message;
       console.log('data', note);
       this.setState({noteExists:resp.data.data[0]._id })
     } 
     if(!note){
-      note = 'note was blank'
+      note = 'Note was blank. Invalid key?'
     }
     
-    this.setState({ PreviousNote: note, noteExists:resp.data.data[0]._id });
+    this.setState({ PreviousNote: note });
     console.log(this.state);
     
   };
@@ -49,12 +49,12 @@ class App extends React.Component {
   putDataToDB = (message) => {
 
     if( !this.state.noteExists){
-      axios.post('http://localhost:3001/api/putData', {
+      axios.post('https://sanket-express.herokuapp.com/api/putData', {
         id: this.state.token,
         message: message,
       });
     }else{
-      axios.post('http://localhost:3001/api/updateData', {
+      axios.post('https://sanket-express.herokuapp.com/api/updateData', {
         token: this.state.token,
         update: {message: message},
       });
