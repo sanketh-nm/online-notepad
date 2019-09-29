@@ -1,0 +1,20 @@
+.qrAndUrl {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 5em;
+}
+
+.ui.action.input{
+  margin: 5em;
+}
+
+@media screen and (max-width: 575px) {
+  .qrAndUrl {
+    flex-direction: column;
+  }
+
+  .ui.action.input {
+    margin: 2em;
+  }
+}
