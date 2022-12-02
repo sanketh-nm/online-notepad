@@ -3,6 +3,9 @@ name: Greetings
 on:
   check_run:
     types: [rerequested, completed, created]
+  check_suite:
+    types: [completed]
+  
 
 jobs:
   greeting:
