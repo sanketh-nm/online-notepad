@@ -1,7 +1,8 @@
 name: Greetings
 
 on:
-  deployment_status
+  check_run:
+    types: [rerequested, completed, created]
   
 
 jobs:
